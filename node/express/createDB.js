@@ -74,63 +74,63 @@ ddb.createTable(params, function(err, data) {
     console.log("Table Created", data);
   }
 });
-var params = {
-  TableName: 'CUSTOMER_LIST',
-  Item: {
-    'custId' : {N: '001'},
-    'custName' : {S: 'Ramesh'},
-    'custAddr' : {S: 'Hyderabad,India'},
-    'custPhone' : {S: '989898989'},
-    'custEmail' : {S: 'alluri.ramesh@gmail.com'},
-    'custId' : {S: 'AADHAR'},
-  }
-};
-
-// Call DynamoDB to add the item to the table
-ddb.putItem(params, function(err, data) {
-  if (err) {
-    console.log("Error", err);
-  } else {
-    console.log("Success", data);
-  }
-});
-var params = {
-  TableName: 'CUSTOMER_LIST',
-  Item: {
-    'custId' : {N: '002'},
-    'custName' : {S: 'Raju'},
-    'custAddr' : {S: 'Hyderabad,India'},
-    'custPhone' : {S: '9892244589'},
-    'custEmail' : {S: 'alluri.ramesh@gmail.com'},
-    'custId' : {S: 'AADHAR'},
-  }
-};
-
-// Call DynamoDB to add the item to the table
-ddb.putItem(params, function(err, data) {
-  if (err) {
-    console.log("Error", err);
-  } else {
-    console.log("Success", data);
-  }
-});
-var params = {
-  TableName: 'CUSTOMER_LIST',
-  Item: {
-    'custId' : {N: '003'},
-    'custName' : {S: 'Alluri'},
-    'custAddr' : {S: 'Hyderabad,India'},
-    'custPhone' : {S: '989822989'},
-    'custEmail' : {S: 'alluri.ramesh@gmail.com'},
-    'custId' : {S: 'AADHAR'},
-  }
-};
-
-// Call DynamoDB to add the item to the table
-ddb.putItem(params, function(err, data) {
-  if (err) {
-    console.log("Error", err);
-  } else {
-    console.log("Success", data);
-  }
-});
+//var params = {
+//  TableName: 'CUSTOMER_LIST',
+//  Item: {
+//    'custId' : {N: '001'},
+//    'custName' : {S: 'Ramesh'},
+//    'custAddr' : {S: 'Hyderabad,India'},
+//    'custPhone' : {S: '989898989'},
+//    'custEmail' : {S: 'alluri.ramesh@gmail.com'},
+//    'custId' : {S: 'AADHAR'},
+//  }
+//};
+//
+//// Call DynamoDB to add the item to the table
+//ddb.putItem(params, function(err, data) {
+//  if (err) {
+//    console.log("Error", err);
+//  } else {
+//    console.log("Success", data);
+//  }
+//});
+//var params = {
+//  TableName: 'CUSTOMER_LIST',
+//  Item: {
+//    'custId' : {N: '002'},
+//    'custName' : {S: 'Raju'},
+//    'custAddr' : {S: 'Hyderabad,India'},
+//    'custPhone' : {S: '9892244589'},
+//    'custEmail' : {S: 'alluri.ramesh@gmail.com'},
+//    'custId' : {S: 'AADHAR'},
+//  }
+//};
+//
+//// Call DynamoDB to add the item to the table
+//ddb.putItem(params, function(err, data) {
+//  if (err) {
+//    console.log("Error", err);
+//  } else {
+//    console.log("Success", data);
+//  }
+//});
+//var params = {
+//  TableName: 'CUSTOMER_LIST',
+//  Item: {
+//    'custId' : {N: '003'},
+//    'custName' : {S: 'Alluri'},
+//    'custAddr' : {S: 'Hyderabad,India'},
+//    'custPhone' : {S: '989822989'},
+//    'custEmail' : {S: 'alluri.ramesh@gmail.com'},
+//    'custId' : {S: 'AADHAR'},
+//  }
+//};
+//
+//// Call DynamoDB to add the item to the table
+//ddb.putItem(params, function(err, data) {
+//  if (err) {
+//    console.log("Error", err);
+//  } else {
+//    console.log("Success", data);
+//  }
+//});
