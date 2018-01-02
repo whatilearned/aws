@@ -22,17 +22,17 @@ router.get('/ramesh', function(req, res) {
 });
 app.post('/cst', function (req, res) {
        console.log(req.body);
-//       var params = {
-//         TableName: 'CUSTOMER_LIST',
-//         Item: req.body
-//       };
-//       ddb.putItem(params, function(err, data) {
-//         if (err) {
-//           console.log("Error", err);
-//         } else {
-//           console.log("Success", data);
-//         }
-//       });
+       var params = {
+         TableName: 'CUSTOMER_LIST',
+         Item: req.body
+       };
+       ddb.putItem(params, function(err, data) {
+         if (err) {
+           console.log("Error", err);
+         } else {
+           console.log("Success", data);
+         }
+       });
       res.send('Cst post homepage')
 })
 app.use(express.static(__dirname+'/public'));
