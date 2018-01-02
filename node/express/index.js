@@ -22,9 +22,17 @@ router.get('/ramesh', function(req, res) {
 });
 app.post('/cst', function (req, res) {
        console.log(req.body);
+       var dt=req.body;
        var params = {
          TableName: 'CUSTOMER_LIST',
-         Item: req.body
+         Item:
+         { "custCode":{'N' ,dt.custCode},
+         "custName": {'S' ,dt.custName},
+         "custAddr": {'S' ,dt.custAddr},
+          "custPhone": {'S' ,dt.custPhone},
+           "custEmail": {'S' ,dt.custEmail},
+            "custId": {'S' ,dt.custId} }
+
        };
        ddb.putItem(params, function(err, data) {
          if (err) {
