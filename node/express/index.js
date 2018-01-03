@@ -1,6 +1,6 @@
 var AWS = require('aws-sdk');
 // Set the region
-AWS.config.update({region: 'ap-south-1'});
+AWS.config.update({region: 'us-east-1'});
 // Create DynamoDB service object
 var ddb = new AWS.DynamoDB({apiVersion: '2018-01-01'});
 
@@ -26,12 +26,12 @@ app.post('/cst', function (req, res) {
        var params = {
          TableName: 'CUSTOMER_LIST',
          Item:
-         { "custCode":{'N' ,dt.custCode},
-         "custName": {'S' ,dt.custName},
-         "custAddr": {'S' ,dt.custAddr},
-          "custPhone": {'S' ,dt.custPhone},
-           "custEmail": {'S' ,dt.custEmail},
-            "custId": {'S' ,dt.custId} }
+         { "custCode":{'N' :dt.custCode},
+         "custName": {'S' :dt.custName},
+         "custAddr": {'S' :dt.custAddr},
+          "custPhone": {'S' :dt.custPhone},
+           "custEmail": {'S' :dt.custEmail},
+            "custId": {'S' :dt.custId} }
 
        };
        ddb.putItem(params, function(err, data) {
@@ -39,6 +39,54 @@ app.post('/cst', function (req, res) {
            console.log("Error", err);
          } else {
            console.log("Success", data);
+           //Sending confirmation email
+           // Create sendEmail params
+           var eparams = {
+             Destination: { /* required */
+               CcAddresses: [
+                 'alluri.ramesh@hotmail.com',
+                 /* more items */
+               ],
+               ToAddresses: [
+                 'ramshraju.alluri@syniverse.com',dt.custEmail
+                 /* more items */
+               ]
+             },
+             Message: { /* required */
+               Body: { /* required */
+                 Html: {
+                  Charset: "UTF-8",
+                  Data: "HTML_FORMAT_BODY"
+                 },
+                 Text: {
+                  Charset: "UTF-8",
+                  Data: "TEXT_FORMAT_BODY"
+                 }
+                },
+                Subject: {
+                 Charset: 'UTF-8',
+                 Data: 'Thank you for Subscribing our service'
+                }
+               },_
+             Source: 'alluri.ramesh@gmail.com', /* required */
+             ReplyToAddresses: [
+                'alluri.ramesh@gmail.com',
+               /* more items */
+             ],
+           };
+
+           // Create the promise and SES service object
+           var sendPromise = new AWS.SES({apiVersion: '2018-01-03'}).sendEmail(eparams).promise();
+
+           // Handle promise's fulfilled/rejected states
+           sendPromise.then(
+             function(data) {
+               console.log(data.MessageId);
+             }).catch(
+               function(err) {
+               console.error(err, err.stack);
+           });
+           //end of send email
          }
        });
       res.send('Cst post homepage')
